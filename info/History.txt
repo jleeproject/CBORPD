@@ -1,0 +1,148 @@
+Version 1.0.0. (2021/03/16)
+1. All classes are modularized.
+2. Conducted experience over Levy Function (d=6).
+3. DiRect algorithm is used for both Infill Sample & GP.
+
+Version 1.0.1. (2021/03/16)
+- Draw sample lengthwidth from normal distribution with mean MLE and small sigma 
+
+
+Version 1.0.2. (2021/03/19)
+- Error fixed: Variance of error functions were wrong.
+- Constrained optimization is under development.
+  - Structures are built. not correct yet.
+
+Version 1.1.0. (2021/03/20)
+ - Developed: Optimization under uncertain constraints.
+ - Developed: Visualization of constraints.
+ - Developed: GP for the observation mean that has the variance plugged in by the mean function of GP of log samples.
+ - Bug fixed: diRectOpt: has several bugs in constrained optimization. 
+    1) Especially, the bug in 'DIRdivide' that terminates in the middle of iteration after max-iteration is critical. It produces infeasible solution at the end.
+    2) In 'CallConstraints', point' should be used instaed of point.
+    3) double(Problem.constraint(i).func) is not working. Instead, replaced by 'if strcmp( func2str(Problem.constraint(1).func), func2str(Problem.f))'.
+ - x_mu_history : The history of estimated minimum points. (minimum of mu function while considering the constraints).
+    - P( C(x) )<=0.05 is used for the constraints: Conservative solution.
+ - x_history : The history of evaluated points. (argmin = acquisition function (x))
+
+Version 1.1.1. (2021/03/22)
+ - Rectified visualizations (both online & final results)
+ - Made: import problems.
+ - Added Toy problems: Gelbart14, Gardener14-1, Gardener14-2, Ariafar19.
+
+Version 1.1.2. (2021/03/23)
+ - Class objects are copied at each experiment. Previously, the physical address is used.
+ - Modified bugs about visualizations.
+ - For the results from V1.1.1, 'visualize_results_v2_for_v_1_1_1' can be used, which reset the parameters.
+ - Modified bugs on the last sample size. Final sample size = budget - cumulative samplesize.
+ - Functions scales were readjusted so that the problem is solvable.
+ - They can be tested with three levels of difficulties: easy, medium, hard
+ - Multiple dimensions are now be able to be visualized.
+
+Version 1.1.3. (2021/03/23)
+ - Back up before mass updates
+
+
+Version 1.2.0. (2021/03/23)
+ - New Structure. Set the original parameter in `setting` struct.
+ - problem is defined at struct 'optProb'
+ - problem name is also defined at struct 'optProb'
+ - Save the output results with generous bounds of constraints with alpha=.05.
+ - Fixed errors that replace WEI by my method. WEI results were the same with mine.
+ - In Posterior Constraints Sampling, when infeasible, maximze PoF(x).
+
+Version 1.2.1. (2021/03/28)
+ - InfillOptimizerTesting is developed.
+ - Error from constraints specifiaction is fixed.
+ - Start to develop on my home computer.
+
+Version 1.3.0 (2021/04/02)
+ - Integrated ADMMBO into the framework.
+
+Version 1.3.1. (2021/04/02)
+ - RDO bug fixed.
+
+Version 1.3.2. (2021/04/02)
+ - maxits for direct algorithm set.
+ - visualization 
+
+Version 1.3.3 (2021/04/03)
+ - Testing8 : poi pof sig(g)
+
+Version 1.3.4. (2021/04/04)
+ - Ariafa function fixed.
+ - Made easy to select settings on server (RDO/STO/DET)
+ - Bug on visualization fixed.
+
+Version 1.4.0 (2021/04/18)
+ - Implemented Graphene Case study with three versions
+   1) On/off ratio
+   2) Signal 
+   3) Response ratio
+ - Graphene models are incorporated.
+ - Five parameters are in the Graphene model.
+
+Version 1.4.1. (2021/04/18)
+ - Devised new opt part for the BO method. ( mu*PoF + (1-PoF) penalty )
+
+
+Version 1.5.0 (2021/04/22)
+ - Implemented NEI
+ - Fixed bug in GP Fitting ( noise variance was added to every element in cov instead of diagonal elements).
+
+Version 1.5.1 (2021/04/22)
+ - Fixed bug in problem constraint setting. 
+ - Print Prompt when resuming
+
+Version 1.5.3 (2021/04/22)
+ - Bug Fixed in PoF/Testing9 when no feasible points were found.
+
+Version 1.6.0 (2021/04/29)
+ - Revised NEI based on BOtorch
+
+Version 1.6.1 (2021/04/30)
+ - Fixed bug in NEI : added max(diff,0). 
+
+Version 1.6.2 (2021/04/30)
+ - Fixed bug in NEI (when infeasible). 
+
+Version 1.6.3/4 (2021/04/30)
+ - Added WEI_based on f_opt = min mu(x_train).
+
+Version 1.6.5/6 (2021/04/30)
+ - Fixed NEI: only f_opt is sampled, EI is calculated by formula.
+
+Version 1.6.7 (2021/04/30)
+ - Defined Problem: RDO
+
+Version 1.6.8/9 (2021/04/30)
+ - Bugs fixed: WEI fopt within tes, RDO problem feasiblity saving.
+
+Version 1.6.10 (2021/05/03)
+ - Fixed Model; sigma of sample mean.
+
+Version 1.6.11 (2021/06/14)
+ - Added an infill method. (using mu_g)
+
+Version 1.6.12 (2021/06/18)
+ - Added alternative proposed methods
+
+Version 1.7.00 (2021/06/25)
+ - Added alternative proposed method :testing6 (obtain f_opt before acquisition function only with x_history)
+
+Version 1.7.01 (2021/07/03)
+ - Added problem to compare
+
+Version 1.8.00 (2021/07/12)
+ - Added reference methods
+
+Version 1.8.01 (2021/07/12)
+ - Added proportional budget to the dimension.
+
+Version 1.8.02 (2021/08/30)
+ - Rectified the variance and bias.
+
+Version 1.8.03 (2022/01/02)
+ - Before arranging the codes
+
+Version 1.9.00 (2022/01/02)
+ - Arrange the codes

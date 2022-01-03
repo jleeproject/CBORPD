@@ -1,0 +1,17 @@
+chngParamAir = GrapheneChangingParameters(TypeGrapheneSensingSolution.WATER_C0);
+chngParamWC0 = GrapheneChangingParameters(TypeGrapheneSensingSolution.WATER_C0);
+chngParamWC10 = GrapheneChangingParameters(TypeGrapheneSensingSolution.WATER_C0);
+chngParamWC20 = GrapheneChangingParameters(TypeGrapheneSensingSolution.WATER_C0);
+fixedParam = GrapheneFixedParameters();
+
+
+solver = GrapheneModelSolver(fixedParam, chngParamAir);
+
+decVar = GrapheneDecisionVariables();
+decVar.Vb = [-80:80];
+ids = solver.solve(decVar);
+
+figure(11);clf;plot(ids);
+
+hold on;
+solver.setChangingParameters(chngParamWC0).solve(decVar)
