@@ -59,7 +59,6 @@ for repeat = 1:nRepeats;
 
                                 if(param_BO.debug)
                                     finIter = toc(sttIter);
-    %                                 fprintf('[BO: Eval = %d/%d (Iter = %d/%d)] :%s\n', nEvaluations, budget, iter, niter, showPrettyElapsedTime(finIter));
                                     fprintf('[%s: Eval = %d/%d (Iter = %d/%d)], iter time: %s\n', showPrettyDateTime(now), nEvaluations, budget, iter, niter, showPrettyElapsedTime(finIter));
                                 elseif(param_BO.info)
                                     if(toc(stt_periodic)>print_interval) %% Every 60 second;
@@ -90,13 +89,11 @@ for repeat = 1:nRepeats;
                     catch err
                         nEvaluations = nEvaluations-1;
                         showErrors(err)
-%                         disp(err)
                         error(err.message);
                     end
                     scr_set_results;
                 end
                 fprintf('> Single Experiment Time: %s\n', showPrettyElapsedTime(toc(stt_experiment)));
-%                 fprintf('Expected End Time:%s\n', showPrettyDateTime(now + seconds(toc(stt_all)/cnt_exp* (tot_exp-cnt_exp))))
                 showEstimatedEndRemainedTime(toc(stt_all), cnt_exp, tot_exp);
                 saveresults_intermediate;
                 fprintf('==========================================================\n');
