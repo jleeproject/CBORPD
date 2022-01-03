@@ -1,8 +1,8 @@
 % setting.plot.savefile = true;
 setting.plot.savefile = false;
 
-% setting.nRepeats = 100;
-setting.nRepeats = 2;
+setting.nRepeats = 100;
+% setting.nRepeats = 2;
 
 
 setting.show_default = false;
