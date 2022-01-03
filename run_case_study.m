@@ -1,10 +1,8 @@
 resume = false;
-% resume = true;
 if(resume); if (~askYesNo('Are you sure you want RESUME?'));return;end;end
 clc;fprintf('BO starts at %s\n', showPrettyDateTime(now()));setVersion; fprintf('%s\n',versionBO);if(~resume);clear all; resume=false;end
 
 scr_run_on_server
-% scr_run_on_my_pc
 
 scr_Casestudy;
 
@@ -51,7 +49,6 @@ for repeat = 1:nRepeats;
                 else
                     niter = param_BO.getEstUpperLimitNumIter(typeSamplesize, givenSamplesize);
 
-%                     if(param_BO.isInfo()); show_BO_parameters_module; end
 
                     try
                         if(setting.type_infill_opt == TypeInfillOptimizer.DirectConstPatternSearch)
@@ -63,7 +60,6 @@ for repeat = 1:nRepeats;
 
                                 if(param_BO.debug)
                                     finIter = toc(sttIter);
-    %                                 fprintf('[BO: Eval = %d/%d (Iter = %d/%d)] :%s\n', nEvaluations, budget, iter, niter, showPrettyElapsedTime(finIter));
                                     fprintf('[%s: Eval = %d/%d (Iter = %d/%d)], iter time: %s\n', showPrettyDateTime(now), nEvaluations, budget, iter, niter, showPrettyElapsedTime(finIter));
                                 elseif(param_BO.info)
                                     if(toc(stt_periodic)>print_interval) %% Every 60 second;
@@ -72,7 +68,6 @@ for repeat = 1:nRepeats;
                                         stt_periodic = tic();
                                     end
                                 end
-    %                             pause();
                                 if(stop)
                                     break;
                                 else
@@ -95,13 +90,11 @@ for repeat = 1:nRepeats;
                     catch err
                         nEvaluations = nEvaluations-1;
                         showErrors(err)
-%                         disp(err)
                         error(err.message);
                     end
                     scr_set_results;
                 end
                 fprintf('> Single Experiment Time: %s\n', showPrettyElapsedTime(toc(stt_experiment)));
-%                 fprintf('Expected End Time:%s\n', showPrettyDateTime(now + seconds(toc(stt_all)/cnt_exp* (tot_exp-cnt_exp))))
                 showEstimatedEndRemainedTime(toc(stt_all), cnt_exp, tot_exp);
                 saveresults_intermediate;
                 fprintf('==========================================================\n');
